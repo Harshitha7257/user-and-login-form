@@ -1,0 +1,44 @@
+<div>
+    <form action="/signin" method="POST">
+        <div class="mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Contact Me</h1>
+        </div>
+        <hr>
+        <br>
+        {{#if errors}}
+        {{#each messages}}
+        <div class="alert alert-danger" role="alert">
+            {{this}}
+        </div>
+        {{/each}}
+        {{/if}}
+
+        <div class="form-label-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Name" autofocus required
+                value="{{name}}">
+        </div>
+
+        <div class="form-label-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email address"
+                value="{{email}}">
+        </div>
+
+        <div class="form-label-group">
+            <label for="mobile">Mobile</label>
+            <input type="number" name="mobile" id="mobile" class="form-control" placeholder="Mobile" value="{{mobile}}">
+        </div>
+
+        <div class="form-label-group">
+            <br>
+            <textarea name="description" id="description" rows="5" class="form-control"
+                placeholder="Description">{{description}}</textarea>
+        </div>
+
+        <div class="form-label-group">
+            <br>
+            <button href="/content" class="btn btn-lg btn-block" type="submit"> Submit</button>
+        </div>
+    </form>
+</div>
