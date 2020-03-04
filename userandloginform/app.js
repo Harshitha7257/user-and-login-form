@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+var authRouter = require('./routes/auth');
+var dashboardRouter = require('./routes/dashboard');
+const {check, validationResult}= require ('express-validator');
 var session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const {check, validationResult}= require ('express-validator');
 
 var app = express();
 
@@ -22,8 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 
 var sess = {
   secret: 'keyboard cat',
@@ -31,6 +31,9 @@ var sess = {
 }
 
 app.use(session(sess));
+
+app.use('/signin', authRouter);
+app.use('/', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const { check, validationResult } = require('express-validator');
-// var MongoClient = require('mongodb').MongoClient;
-// var url = "mongodb://localhost:27017/";
-// var ObjectId = require('mongodb').ObjectID;
 
 let authenticate = function (req, res, next) {
   var loggedIn = req.session.isLoggedIn;
@@ -31,8 +28,9 @@ router.use(authenticated);
 router.use(authenticate);
 
 /* GET home page. */
-router.get('/',function (req, res, next) {
-    res.render('index' ,{user: req.session.user});
+router.get('/',
+  function (req, res, next) {
+    res.render('index',);
   });
 
   router.get('/', function (req,res,next){
